@@ -1,0 +1,16 @@
+<div class="hb-module hb-revision text-body-secondary">
+  {{- $params := site.Params.hb.revision }}
+  {{- $format := default ":date_full" $params.date_format }}
+  {{- if ne .Lastmod .Date }}
+    {{- $lastmod := .Lastmod | time.Format $format }}
+    <span class="hb-revision-lastmod" title="{{ i18n `revised_at` (dict `Date` $lastmod) }}">
+      {{ partial "icons/icon" (dict "vendor" "bs" "name" "pencil-square") }}
+      <span>{{ $lastmod }}</span>
+    </span>
+  {{- end }}
+  {{- $date := .Date | time.Format $format }}
+  <span class="hb-revision-date ms-2" title="{{ i18n `created_at` (dict `Date` $date) }}">
+    {{ partial "icons/icon" (dict "vendor" "bs" "name" "calendar-plus") }}
+    <span>{{ $date }}</span>
+  </span>
+</div>
