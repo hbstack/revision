@@ -1,0 +1,5 @@
+[created_at]
+other = "創建於{{ .Date }}"
+
+[revised_at]
+other = "修正於{{ .Date }}"
