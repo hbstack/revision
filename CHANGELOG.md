@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/hbstack/revision/compare/v0.1.1...v0.1.2) (2023-12-05)
+
+
+### Styles 🎨
+
+* allow wrapping on smaller screen ([2768c76](https://github.com/hbstack/revision/commit/2768c762c9c553ae7f6b2625b6596fef1a4e3b5b))
+
 ## [0.1.1](https://github.com/hbstack/revision/compare/v0.1.0...v0.1.1) (2023-12-05)
 
 
