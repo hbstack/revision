@@ -4,7 +4,8 @@
   {{- $format := default ":date_full" $params.date_format }}
   {{- if ne .Lastmod .Date }}
     {{- $lastmod := .Lastmod | time.Format $format }}
-    <span class="hb-revision-lastmod me-2" title="{{ i18n `revised_at` (dict `Date` .Lastmod) }}">
+    {{- $lastmodFull := printf "%s %s" (.Lastmod | time.Format ":date_full") (.Lastmod | time.Format ":time_full") }}
+    <span class="hb-revision-lastmod me-2" title="{{ i18n `revised_at` (dict `Date` $lastmodFull) }}">
       {{- if $icons }}
         {{ partial "icons/icon" (dict "vendor" "bs" "name" "pencil-square") }}
         <span>{{ $lastmod }}</span>
@@ -14,7 +15,8 @@
     </span>
   {{- end }}
   {{- $date := .Date | time.Format $format }}
-  <span class="hb-revision-date" title="{{ i18n `created_at` (dict `Date` .Date) }}">
+  {{- $dateFull := printf "%s %s" (.Date | time.Format ":date_full") (.Date | time.Format ":time_full") }}
+  <span class="hb-revision-date" title="{{ i18n `created_at` (dict `Date` $dateFull) }}">
     {{- if $icons }}
       {{ partial "icons/icon" (dict "vendor" "bs" "name" "calendar-plus") }}
       <span>{{ $date }}</span>
