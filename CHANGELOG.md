@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.0](https://github.com/hbstack/revision/compare/v0.1.2...v0.2.0) (2023-12-14)
+
+
+### Features ✨
+
+* add the font_size parameter ([#16](https://github.com/hbstack/revision/issues/16)) ([3ba3722](https://github.com/hbstack/revision/commit/3ba372243ac2646d471a26fc53b2bda045eb37cf))
+* add the icons parameter ([#15](https://github.com/hbstack/revision/issues/15)) ([864cb1f](https://github.com/hbstack/revision/commit/864cb1f4e1632b70240292df59a647932b785dd1))
+* **i18n:** create pt-br.toml ([#13](https://github.com/hbstack/revision/issues/13)) ([1ee6d38](https://github.com/hbstack/revision/commit/1ee6d3818a0dfa46bb000a833a75ab8f0424d6e9))
+
 ## [0.1.2](https://github.com/hbstack/revision/compare/v0.1.1...v0.1.2) (2023-12-05)
 
 
