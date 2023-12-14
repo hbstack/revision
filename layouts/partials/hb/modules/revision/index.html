@@ -1,3 +1,5 @@
+{{- $createdAt := default true site.Params.hb.revision.created_at }}
+{{- if or $createdAt (ne .Lastmod .Date) }}
 <div class="hb-module hb-revision text-body-secondary d-flex flex-wrap">
   {{- $params := site.Params.hb.revision }}
   {{- $icons := default true $params.icons }}
@@ -14,14 +16,17 @@
       {{- end }}
     </span>
   {{- end }}
-  {{- $date := .Date | time.Format $format }}
-  {{- $dateFull := printf "%s %s" (.Date | time.Format ":date_full") (.Date | time.Format ":time_full") }}
-  <span class="hb-revision-date" title="{{ i18n `created_at` (dict `Date` $dateFull) }}">
-    {{- if $icons }}
-      {{ partial "icons/icon" (dict "vendor" "bs" "name" "calendar-plus") }}
-      <span>{{ $date }}</span>
-    {{- else }}
-      {{ i18n `created_at` (dict `Date` $date) }}
-    {{- end }}
-  </span>
+  {{- if $createdAt }}
+    {{- $date := .Date | time.Format $format }}
+    {{- $dateFull := printf "%s %s" (.Date | time.Format ":date_full") (.Date | time.Format ":time_full") }}
+    <span class="hb-revision-date" title="{{ i18n `created_at` (dict `Date` $dateFull) }}">
+      {{- if $icons }}
+        {{ partial "icons/icon" (dict "vendor" "bs" "name" "calendar-plus") }}
+        <span>{{ $date }}</span>
+      {{- else }}
+        {{ i18n `created_at` (dict `Date` $date) }}
+      {{- end }}
+    </span>
+  {{- end }}
 </div>
+{{- end }}
