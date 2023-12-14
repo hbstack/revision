@@ -5,3 +5,4 @@ path = "github.com/hugomods/icons/vendors/bootstrap"
 date_format = ":date_full"
 icons = true
 font_size = ".825rem"
+created_at = true
