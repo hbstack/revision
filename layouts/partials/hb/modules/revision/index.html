@@ -1,16 +1,25 @@
 <div class="hb-module hb-revision text-body-secondary d-flex flex-wrap">
   {{- $params := site.Params.hb.revision }}
+  {{- $icons := default true $params.icons }}
   {{- $format := default ":date_full" $params.date_format }}
   {{- if ne .Lastmod .Date }}
     {{- $lastmod := .Lastmod | time.Format $format }}
-    <span class="hb-revision-lastmod me-2" title="{{ i18n `revised_at` (dict `Date` $lastmod) }}">
-      {{ partial "icons/icon" (dict "vendor" "bs" "name" "pencil-square") }}
-      <span>{{ $lastmod }}</span>
+    <span class="hb-revision-lastmod me-2" title="{{ i18n `revised_at` (dict `Date` .Lastmod) }}">
+      {{- if $icons }}
+        {{ partial "icons/icon" (dict "vendor" "bs" "name" "pencil-square") }}
+        <span>{{ $lastmod }}</span>
+      {{- else }}
+        {{ i18n `revised_at` (dict `Date` $lastmod) }}
+      {{- end }}
     </span>
   {{- end }}
   {{- $date := .Date | time.Format $format }}
-  <span class="hb-revision-date" title="{{ i18n `created_at` (dict `Date` $date) }}">
-    {{ partial "icons/icon" (dict "vendor" "bs" "name" "calendar-plus") }}
-    <span>{{ $date }}</span>
+  <span class="hb-revision-date" title="{{ i18n `created_at` (dict `Date` .Date) }}">
+    {{- if $icons }}
+      {{ partial "icons/icon" (dict "vendor" "bs" "name" "calendar-plus") }}
+      <span>{{ $date }}</span>
+    {{- else }}
+      {{ i18n `created_at` (dict `Date` $date) }}
+    {{- end }}
   </span>
 </div>
