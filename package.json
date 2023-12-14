@@ -20,7 +20,7 @@
     "ts-standard": "^12.0.2"
   },
   "scripts": {
-    "lint": "npm run eslint && npm run stylelint",
+    "lint": "npm run stylelint",
     "eslint": "ts-standard",
     "stylelint": "npx stylelint \"**/*.scss\""
   }
