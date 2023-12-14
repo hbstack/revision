@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/hbstack/revision/compare/v0.2.0...v0.3.0) (2023-12-14)
+
+
+### Features ✨
+
+* add the created_at parameter, when false hide the date of created at ([#19](https://github.com/hbstack/revision/issues/19)) ([91e45ae](https://github.com/hbstack/revision/commit/91e45aec39ef0913bd584df888860c05eecf1d66))
+
+
+### Bug Fixes 🐞
+
+* localize the full date and full lastmod ([#17](https://github.com/hbstack/revision/issues/17)) ([b53d89d](https://github.com/hbstack/revision/commit/b53d89de273917ae5a79fa20faff4a72d319503c))
+
 ## [0.2.0](https://github.com/hbstack/revision/compare/v0.1.2...v0.2.0) (2023-12-14)
 
 
