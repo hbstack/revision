@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/hbstack/revision/compare/v0.3.0...v0.4.0) (2024-02-03)
+
+
+### Features ✨
+
+* use tooltip for showing title if relative module was imported ([#30](https://github.com/hbstack/revision/issues/30)) ([5c8e000](https://github.com/hbstack/revision/commit/5c8e000bd7622217e3e3d3617788619490a531ff))
+
 ## [0.3.0](https://github.com/hbstack/revision/compare/v0.2.0...v0.3.0) (2023-12-14)
 
 
