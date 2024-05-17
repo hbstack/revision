@@ -1,3 +1,13 @@
 .hb-revision {
   font-size: $hb-revision-font-size;
 }
+
+.hb-revision-contributor-img {
+  width: 36px;
+  height: 36px;
+  opacity: .75;
+
+  &:hover {
+    opacity: 1;
+  }
+}
