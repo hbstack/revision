@@ -1,10 +1,88 @@
+{{- $showContributors := default false site.Params.hb.revision.repo_contributors }}
+{{- $repoActions := default true site.Params.hb.revision.repo_actions }}
 {{- $createdAt := default true site.Params.hb.revision.created_at }}
-{{- if or $createdAt (ne .Lastmod .Date) }}
+{{- if or $showContributors (or $createdAt (ne .Lastmod .Date)) }}
 <div class="hb-module hb-revision text-body-secondary d-flex flex-wrap">
   {{- $tooltip := partial "hb/functions/module-exists" "github.com/hbstack/bs-tooltip" }}
   {{- $params := site.Params.hb.revision }}
   {{- $icons := default true $params.icons }}
   {{- $format := default ":date_full" $params.date_format }}
+  {{- $path := "" }}
+  {{- with $.Page.File }}
+    {{- $path = printf "%scontent/%s"
+      (cond (eq $params.repo_subpath "") "" (printf "/%s" $params.repo_subpath))
+      .Path
+    }}
+  {{- end }}
+  {{- $viewURL := "" }}
+  {{- $editURL := "" }}
+  {{- $historyURL := "" }}
+  {{- $repoBranch := default "master" $params.repo_branch }}
+  {{- $contributors := dict }}
+  {{- if eq $params.repo_service "github" }}
+    {{- $url := printf "https://api.github.com/repos/%s/%s/commits?path=%s" $params.repo_owner $params.repo_name $path }}
+    {{- $editURL = printf "https://github.com/%s/%s/edit/%s/%s" $params.repo_owner $params.repo_name $repoBranch $path }}
+    {{- $viewURL = printf "https://github.com/%s/%s/blob/%s/%s" $params.repo_owner $params.repo_name $repoBranch $path }}
+    {{- $historyURL = printf "https://github.com/%s/%s/commits/%s/%s" $params.repo_owner $params.repo_name $repoBranch $path }}
+    {{- $opts := dict }}
+    {{- with getenv "GITHUB_TOKEN" }}
+      {{- $opts = merge $opts (dict "headers" (dict "Authorization" (printf "Bearer %s" .))) }}
+    {{- end }}
+    {{- with and $showContributors (resources.GetRemote $url $opts) }}
+      {{- range $weight, $commit := transform.Unmarshal . }}
+        {{- if not .author }}
+          {{- continue }}
+        {{- end }}
+        {{- if not (isset $contributors .author.login) }}
+          {{- $contributors = merge $contributors (dict .author.login (dict
+            "weight" $weight
+            "name" .commit.author.name
+            "img" .author.avatar_url
+            "url" .author.html_url))
+          }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+  {{- else if ne $params.repo_service "" }}
+    {{- warnf "[github.com/hbstack/revision] unsupported repo service: %s" $params.repo_service }}
+  {{- end }}
+  {{- with sort $contributors "weight" "desc" }}
+    <div class="d-flex hb-revision-contributors flex-wrap gap-1 w-100 hb-revision-repo mb-2">
+      {{- range . }}
+        <a class="hb-revision-contributor text-decoration-none" href="{{ .url }}" rel="external" target="_blank" title="{{ .name }}">
+          <img class="hb-revision-contributor-img rounded-circle" src="{{ .img }}" alt="{{ .name }}" />
+        </a>
+      {{- end }}
+    </div>
+  {{- end }}
+  {{- with and $repoActions $viewURL $editURL $historyURL }}
+    <div class="d-flex flex-wrap gap-2 w-100 hb-revision-repo-actions mb-2">
+      {{- with $viewURL }}
+        <a class="text-decoration-none" href="{{ . }}" rel="external" target="_blank">
+          {{- if $icons -}}
+            {{- partial "icons/icon" (dict "vendor" "bs" "name" "eye" "className" "me-1") -}}
+          {{- end -}}
+          View page source
+        </a>
+      {{- end }}
+      {{- with $editURL }}
+        <a class="text-decoration-none" href="{{ . }}" rel="external" target="_blank">
+          {{- if $icons -}}
+            {{- partial "icons/icon" (dict "vendor" "bs" "name" "pencil-square" "className" "me-1") -}}
+          {{- end -}}
+          Edit this page
+        </a>
+      {{- end }}
+      {{- with $historyURL}}
+        <a class="text-decoration-none" href="{{ . }}" rel="external" target="_blank">
+          {{- if $icons -}}
+            {{- partial "icons/icon" (dict "vendor" "bs" "name" "clock" "className" "me-1") -}}
+          {{- end -}}
+          History
+        </a>
+      {{- end }}
+    </div>
+  {{- end }}
   {{- if ne .Lastmod .Date }}
     {{- $lastmod := .Lastmod | time.Format $format }}
     {{- $lastmodFull := printf "%s %s" (.Lastmod | time.Format ":date_full") (.Lastmod | time.Format ":time_full") }}
