@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/hbstack/revision/compare/v0.4.0...v0.5.0) (2024-05-17)
+
+
+### Features ✨
+
+* add the `repo` parameters for actions and contributors ([#57](https://github.com/hbstack/revision/issues/57)) ([137b8d3](https://github.com/hbstack/revision/commit/137b8d34f54ed0c9500c64d9cecd716225a5ed3a))
+
 ## [0.4.0](https://github.com/hbstack/revision/compare/v0.3.0...v0.4.0) (2024-02-03)
 
 
