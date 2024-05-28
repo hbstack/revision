@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/hbstack/revision/compare/v0.5.0...v0.6.0) (2024-05-28)
+
+
+### Features ✨
+
+* **i18n:** add Vietnamese translations ([a316d3c](https://github.com/hbstack/revision/commit/a316d3cf4b2c9f12ae02e64ffdaec7ae7bb053e1))
+
 ## [0.5.0](https://github.com/hbstack/revision/compare/v0.4.0...v0.5.0) (2024-05-17)
 
 
