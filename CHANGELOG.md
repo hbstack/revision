@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.1](https://github.com/hbstack/revision/compare/v0.6.0...v0.6.1) (2024-06-04)
+
+
+### Bug Fixes 🐞
+
+* verify the API response for any errors ([#65](https://github.com/hbstack/revision/issues/65)) ([5ffb820](https://github.com/hbstack/revision/commit/5ffb82024787ea4fb7de93fd0fb85460599db93b))
+
+
+### Performance Improvements ⚡️
+
+* use `Lastmod` as cache key for fetching commits ([#67](https://github.com/hbstack/revision/issues/67)) ([9688cb9](https://github.com/hbstack/revision/commit/9688cb935b1fdb41afa5abb87123cbb1bb662046))
+
 ## [0.6.0](https://github.com/hbstack/revision/compare/v0.5.0...v0.6.0) (2024-05-28)
 
 
