@@ -1,5 +1,14 @@
 [created_at]
 other = "創建於{{ .Date }}"
 
+[edit_the_page]
+other = "編輯頁面"
+
+[history]
+other = "歷史"
+
 [revised_at]
 other = "修正於{{ .Date }}"
+
+[view_the_page_source]
+other = "查看源碼"

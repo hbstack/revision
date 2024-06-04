@@ -65,7 +65,7 @@
           {{- if $icons -}}
             {{- partial "icons/icon" (dict "vendor" "bs" "name" "eye" "className" "me-1") -}}
           {{- end -}}
-          View page source
+          {{ i18n "view_the_page_source" }}
         </a>
       {{- end }}
       {{- with $editURL }}
@@ -73,7 +73,7 @@
           {{- if $icons -}}
             {{- partial "icons/icon" (dict "vendor" "bs" "name" "pencil-square" "className" "me-1") -}}
           {{- end -}}
-          Edit this page
+          {{ i18n "edit_the_page" }}
         </a>
       {{- end }}
       {{- with $historyURL}}
@@ -81,7 +81,7 @@
           {{- if $icons -}}
             {{- partial "icons/icon" (dict "vendor" "bs" "name" "clock" "className" "me-1") -}}
           {{- end -}}
-          History
+          {{ i18n "history" }}
         </a>
       {{- end }}
     </div>

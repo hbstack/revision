@@ -1,5 +1,14 @@
 [created_at]
 other = "Dihasilkan pada {{ .Date }}"
 
+[edit_the_page]
+other = "Edit the page"
+
+[history]
+other = "History"
+
 [revised_at]
 other = "Disemak pada {{ .Date }}"
+
+[view_the_page_source]
+other = "View the page source"
