@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.2](https://github.com/hbstack/revision/compare/v0.6.1...v0.6.2) (2024-06-04)
+
+
+### Bug Fixes 🐞
+
+* **i18n:** add translations for repo actions ([c729cb1](https://github.com/hbstack/revision/commit/c729cb1794be1fdd3268dfd77e28536519be8327))
+
 ## [0.6.1](https://github.com/hbstack/revision/compare/v0.6.0...v0.6.1) (2024-06-04)
 
 
