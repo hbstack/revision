@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.3](https://github.com/hbstack/revision/compare/v0.6.2...v0.6.3) (2024-06-04)
+
+
+### Bug Fixes 🐞
+
+* set repo_service as empty string by default ([f0e55b9](https://github.com/hbstack/revision/commit/f0e55b9b93f5f2368acbb543d29fe66e4d5730ed))
+
 ## [0.6.2](https://github.com/hbstack/revision/compare/v0.6.1...v0.6.2) (2024-06-04)
 
 
