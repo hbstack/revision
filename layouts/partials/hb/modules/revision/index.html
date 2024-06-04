@@ -29,6 +29,9 @@
       {{- $opts = merge $opts (dict "headers" (dict "Authorization" (printf "Bearer %s" .))) }}
     {{- end }}
     {{- with and $showContributors (resources.GetRemote $url $opts) }}
+      {{- with .Err }}
+        {{- errorf "[github.com/hbstack/revision] failed to fetch %s: %s" $url . }}
+      {{- end }}
       {{- range $weight, $commit := transform.Unmarshal . }}
         {{- if not .author }}
           {{- continue }}
