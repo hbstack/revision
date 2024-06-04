@@ -24,7 +24,7 @@
     {{- $editURL = printf "https://github.com/%s/%s/edit/%s/%s" $params.repo_owner $params.repo_name $repoBranch $path }}
     {{- $viewURL = printf "https://github.com/%s/%s/blob/%s/%s" $params.repo_owner $params.repo_name $repoBranch $path }}
     {{- $historyURL = printf "https://github.com/%s/%s/commits/%s/%s" $params.repo_owner $params.repo_name $repoBranch $path }}
-    {{- $opts := dict }}
+    {{- $opts := dict "key" $.Lastmod }}
     {{- with getenv "GITHUB_TOKEN" }}
       {{- $opts = merge $opts (dict "headers" (dict "Authorization" (printf "Bearer %s" .))) }}
     {{- end }}
