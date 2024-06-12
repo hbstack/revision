@@ -10,3 +10,4 @@ icons = true
 font_size = ".825rem"
 created_at = true
 repo_service = ""
+repo_subpath = ""
