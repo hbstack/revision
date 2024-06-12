@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.4](https://github.com/hbstack/revision/compare/v0.6.3...v0.6.4) (2024-06-12)
+
+
+### Bug Fixes 🐞
+
+* set repo_subpath as empty string by default ([484c210](https://github.com/hbstack/revision/commit/484c21004c6dfee2713bb3d15e3d83688131a751))
+
 ## [0.6.3](https://github.com/hbstack/revision/compare/v0.6.2...v0.6.3) (2024-06-04)
 
 
