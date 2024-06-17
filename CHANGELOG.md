@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.5](https://github.com/hbstack/revision/compare/v0.6.4...v0.6.5) (2024-06-17)
+
+
+### Bug Fixes 🐞
+
+* do not generate repos related stuff for content adapter files ([#76](https://github.com/hbstack/revision/issues/76)) ([b8a9859](https://github.com/hbstack/revision/commit/b8a985908b9f1e64644a73213436e118f288c74a))
+
 ## [0.6.4](https://github.com/hbstack/revision/compare/v0.6.3...v0.6.4) (2024-06-12)
 
 
