@@ -8,46 +8,50 @@
   {{- $icons := default true $params.icons }}
   {{- $format := default ":date_full" $params.date_format }}
   {{- $path := "" }}
+  {{- $isFile := true }}
   {{- with $.Page.File }}
     {{- $path = printf "%scontent/%s"
       (cond (eq $params.repo_subpath "") "" (printf "/%s" $params.repo_subpath))
       .Path
     }}
+    {{ $isFile = not .IsContentAdapter }}
   {{- end }}
   {{- $viewURL := "" }}
   {{- $editURL := "" }}
   {{- $historyURL := "" }}
   {{- $repoBranch := default "master" $params.repo_branch }}
   {{- $contributors := dict }}
-  {{- if eq $params.repo_service "github" }}
-    {{- $url := printf "https://api.github.com/repos/%s/%s/commits?path=%s" $params.repo_owner $params.repo_name $path }}
-    {{- $editURL = printf "https://github.com/%s/%s/edit/%s/%s" $params.repo_owner $params.repo_name $repoBranch $path }}
-    {{- $viewURL = printf "https://github.com/%s/%s/blob/%s/%s" $params.repo_owner $params.repo_name $repoBranch $path }}
-    {{- $historyURL = printf "https://github.com/%s/%s/commits/%s/%s" $params.repo_owner $params.repo_name $repoBranch $path }}
-    {{- $opts := dict "key" $.Lastmod }}
-    {{- with getenv "GITHUB_TOKEN" }}
-      {{- $opts = merge $opts (dict "headers" (dict "Authorization" (printf "Bearer %s" .))) }}
-    {{- end }}
-    {{- with and $showContributors (resources.GetRemote $url $opts) }}
-      {{- with .Err }}
-        {{- errorf "[github.com/hbstack/revision] failed to fetch %s: %s" $url . }}
+  {{- if $isFile }}
+    {{- if eq $params.repo_service "github" }}
+      {{- $url := printf "https://api.github.com/repos/%s/%s/commits?path=%s" $params.repo_owner $params.repo_name $path }}
+      {{- $editURL = printf "https://github.com/%s/%s/edit/%s/%s" $params.repo_owner $params.repo_name $repoBranch $path }}
+      {{- $viewURL = printf "https://github.com/%s/%s/blob/%s/%s" $params.repo_owner $params.repo_name $repoBranch $path }}
+      {{- $historyURL = printf "https://github.com/%s/%s/commits/%s/%s" $params.repo_owner $params.repo_name $repoBranch $path }}
+      {{- $opts := dict "key" $.Lastmod }}
+      {{- with getenv "GITHUB_TOKEN" }}
+        {{- $opts = merge $opts (dict "headers" (dict "Authorization" (printf "Bearer %s" .))) }}
       {{- end }}
-      {{- range $weight, $commit := transform.Unmarshal . }}
-        {{- if not .author }}
-          {{- continue }}
+      {{- with and $showContributors (resources.GetRemote $url $opts) }}
+        {{- with .Err }}
+          {{- errorf "[github.com/hbstack/revision] failed to fetch %s: %s" $url . }}
         {{- end }}
-        {{- if not (isset $contributors .author.login) }}
-          {{- $contributors = merge $contributors (dict .author.login (dict
-            "weight" $weight
-            "name" .commit.author.name
-            "img" .author.avatar_url
-            "url" .author.html_url))
-          }}
+        {{- range $weight, $commit := transform.Unmarshal . }}
+          {{- if not .author }}
+            {{- continue }}
+          {{- end }}
+          {{- if not (isset $contributors .author.login) }}
+            {{- $contributors = merge $contributors (dict .author.login (dict
+              "weight" $weight
+              "name" .commit.author.name
+              "img" .author.avatar_url
+              "url" .author.html_url))
+            }}
+          {{- end }}
         {{- end }}
       {{- end }}
+    {{- else if ne $params.repo_service "" }}
+      {{- warnf "[github.com/hbstack/revision] unsupported repo service: %s" $params.repo_service }}
     {{- end }}
-  {{- else if ne $params.repo_service "" }}
-    {{- warnf "[github.com/hbstack/revision] unsupported repo service: %s" $params.repo_service }}
   {{- end }}
   {{- with sort $contributors "weight" "desc" }}
     <div class="d-flex hb-revision-contributors flex-wrap gap-1 w-100 hb-revision-repo mb-2">
