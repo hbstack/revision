@@ -14,7 +14,9 @@
       (cond (eq $params.repo_subpath "") "" (printf "/%s" $params.repo_subpath))
       .Path
     }}
-    {{ $isFile = not .IsContentAdapter }}
+    {{ if ge hugo.Version "0.126.0" }}
+      {{ $isFile = not .IsContentAdapter }}
+    {{ end }}
   {{- end }}
   {{- $viewURL := "" }}
   {{- $editURL := "" }}
