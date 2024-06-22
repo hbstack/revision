@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.6](https://github.com/hbstack/revision/compare/v0.6.5...v0.6.6) (2024-06-22)
+
+
+### Bug Fixes 🐞
+
+* backwards compatibility of content adapter ([e9e6808](https://github.com/hbstack/revision/commit/e9e6808044029c4c4526ad1f880d4b022bf88085)), closes [#79](https://github.com/hbstack/revision/issues/79)
+
 ## [0.6.5](https://github.com/hbstack/revision/compare/v0.6.4...v0.6.5) (2024-06-17)
 
 
