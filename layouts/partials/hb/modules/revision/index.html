@@ -29,25 +29,27 @@
       {{- $editURL = printf "https://github.com/%s/%s/edit/%s/%s" $params.repo_owner $params.repo_name $repoBranch $path }}
       {{- $viewURL = printf "https://github.com/%s/%s/blob/%s/%s" $params.repo_owner $params.repo_name $repoBranch $path }}
       {{- $historyURL = printf "https://github.com/%s/%s/commits/%s/%s" $params.repo_owner $params.repo_name $repoBranch $path }}
-      {{- $opts := dict "key" $.Lastmod }}
-      {{- with getenv "GITHUB_TOKEN" }}
-        {{- $opts = merge $opts (dict "headers" (dict "Authorization" (printf "Bearer %s" .))) }}
-      {{- end }}
-      {{- with and $showContributors (resources.GetRemote $url $opts) }}
-        {{- with .Err }}
-          {{- errorf "[github.com/hbstack/revision] failed to fetch %s: %s" $url . }}
+      {{- if $showContributors }}
+        {{- $opts := dict "key" $.Lastmod }}
+        {{- with getenv "GITHUB_TOKEN" }}
+          {{- $opts = merge $opts (dict "headers" (dict "Authorization" (printf "Bearer %s" .))) }}
         {{- end }}
-        {{- range $weight, $commit := transform.Unmarshal . }}
-          {{- if not .author }}
-            {{- continue }}
+        {{- with resources.GetRemote $url $opts }}
+          {{- with .Err }}
+            {{- errorf "[github.com/hbstack/revision] failed to fetch %s: %s" $url . }}
           {{- end }}
-          {{- if not (isset $contributors .author.login) }}
-            {{- $contributors = merge $contributors (dict .author.login (dict
-              "weight" $weight
-              "name" .commit.author.name
-              "img" .author.avatar_url
-              "url" .author.html_url))
-            }}
+          {{- range $weight, $commit := transform.Unmarshal . }}
+            {{- if not .author }}
+              {{- continue }}
+            {{- end }}
+            {{- if not (isset $contributors .author.login) }}
+              {{- $contributors = merge $contributors (dict .author.login (dict
+                "weight" $weight
+                "name" .commit.author.name
+                "img" .author.avatar_url
+                "url" .author.html_url))
+              }}
+            {{- end }}
           {{- end }}
         {{- end }}
       {{- end }}
