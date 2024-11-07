@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.7](https://github.com/hbstack/revision/compare/v0.6.6...v0.6.7) (2024-11-07)
+
+
+### Bug Fixes 🐞
+
+* avoid reading GITHUB_TOKEN env var unnecessarily ([#108](https://github.com/hbstack/revision/issues/108)) ([5bcb02c](https://github.com/hbstack/revision/commit/5bcb02cc15fe598b1d4ea1f5c63248d3257fc476)), closes [#107](https://github.com/hbstack/revision/issues/107)
+
 ## [0.6.6](https://github.com/hbstack/revision/compare/v0.6.5...v0.6.6) (2024-06-22)
 
 
