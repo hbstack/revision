@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.8](https://github.com/hbstack/revision/compare/v0.6.7...v0.6.8) (2024-11-13)
+
+
+### Bug Fixes 🐞
+
+* do not fetch contributors for uncommitted content ([#111](https://github.com/hbstack/revision/issues/111)) ([19950c2](https://github.com/hbstack/revision/commit/19950c2031c4debfae7c0dc080613f2668fd369b)), closes [#110](https://github.com/hbstack/revision/issues/110)
+
 ## [0.6.7](https://github.com/hbstack/revision/compare/v0.6.6...v0.6.7) (2024-11-07)
 
 
