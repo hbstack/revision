@@ -34,11 +34,11 @@
         {{- with getenv "GITHUB_TOKEN" }}
           {{- $opts = merge $opts (dict "headers" (dict "Authorization" (printf "Bearer %s" .))) }}
         {{- end }}
-        {{- with resources.GetRemote $url $opts }}
+        {{- with try (resources.GetRemote $url $opts) }}
           {{- with .Err }}
             {{- errorf "[github.com/hbstack/revision] failed to fetch %s: %s" $url . }}
           {{- end }}
-          {{- range $weight, $commit := transform.Unmarshal . }}
+          {{- range $weight, $commit := transform.Unmarshal .Value }}
             {{- if not .author }}
               {{- continue }}
             {{- end }}
