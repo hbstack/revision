@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.9](https://github.com/hbstack/revision/compare/v0.6.8...v0.6.9) (2025-01-17)
+
+
+### Bug Fixes 🐞
+
+* handle resources.GetRemote errors with the try expression ([#128](https://github.com/hbstack/revision/issues/128)) ([8722297](https://github.com/hbstack/revision/commit/8722297f22e7c4f83e71510370ba149d1b579249))
+
 ## [0.6.8](https://github.com/hbstack/revision/compare/v0.6.7...v0.6.8) (2024-11-13)
 
 
